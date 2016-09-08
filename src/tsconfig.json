@@ -12,11 +12,7 @@
     "baseUrl": ".",
     "types": [
       "core-js",
-      "hammerjs",
-      "jasmine",
       "node",
-      "protractor",
-      "selenium-webdriver",
       "source-map"
     ],
     "typeRoots": [
@@ -26,8 +22,6 @@
   },
   "exclude": [
     "../node_modules",
-    "./**/*.e2e.ts",
-    "./**/*.spec.ts",
     "./main.browser.aot.ts"
   ],
   "awesomeTypescriptLoaderOptions": {

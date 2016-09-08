@@ -1,5 +1,4 @@
-import './polyfills.browser.aot';
-import './rxjs.imports';
+import './polyfills.browser';
 declare var ENV: string;
 
 import { enableProdMode } from '@angular/core';

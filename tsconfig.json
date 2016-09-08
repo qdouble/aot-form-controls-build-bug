@@ -12,11 +12,8 @@
     "baseUrl": "./src",
     "types": [
       "core-js",
-      "hammerjs",
       "jasmine",
       "node",
-      "protractor",
-      "selenium-webdriver",
       "source-map"
     ]
   },

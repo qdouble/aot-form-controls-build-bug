@@ -6,10 +6,7 @@ const {
   ContextReplacementPlugin,
   DefinePlugin,
   ProgressPlugin,
-  NoErrorsPlugin,
-  optimize: {
-    CommonsChunkPlugin
-  }
+  NoErrorsPlugin
 } = require('webpack');
 
 const CompressionPlugin = require('compression-webpack-plugin');
@@ -68,7 +65,6 @@ module.exports = function webpackConfig(): WebpackConfig {
         loader: 'source-map-loader',
         exclude: [
           // these packages have problems with their sourcemaps
-          root('node_modules/rxjs'),
           root('node_modules/@angular')
         ]
       },
@@ -83,14 +79,8 @@ module.exports = function webpackConfig(): WebpackConfig {
         ],
         exclude: [/\.(spec|e2e|d)\.ts$/]
       },
-      { test: /\.json$/, loader: 'json-loader' },
       { test: /\.html/, loader: 'raw-loader', exclude: [root('src/index.html')] },
       { test: /\.css$/, loader: 'raw-loader' },
-      {
-        test: /\.scss$/,
-        exclude: /node_modules/,
-        loaders: ['raw-loader', 'sass-loader']
-      },
     ]
   };
 
@@ -101,13 +91,7 @@ module.exports = function webpackConfig(): WebpackConfig {
       ),
     new ProgressPlugin(),
     new ForkCheckerPlugin(),
-    new CommonsChunkPlugin({ name: ['main'], minChunks: Infinity }),
     new DefinePlugin(CONSTANTS),
-    new NamedModulesPlugin(),
-    new CopyWebpackPlugin([{
-      from: 'src/assets',
-      to: 'assets'
-    }]),
     new HtmlWebpackPlugin({
       template: 'src/index.html'
     })
@@ -128,13 +112,6 @@ module.exports = function webpackConfig(): WebpackConfig {
         comments: false
       }),
       // Generate Gzip files (Optional, production server should do this.) //
-      new CompressionPlugin({
-        asset: '[path].gz[query]',
-        algorithm: 'gzip',
-        test: /\.js$|\.html$/,
-        threshold: 10240,
-        minRatio: 0.8
-      })
     );
     config.resolve = {
       extensions: ['.ts', '.js'],
