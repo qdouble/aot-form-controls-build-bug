@@ -1,4 +1,4 @@
-# AOT and Form Control Compile Errors
+# AOT and Form Control build bug
 > If you have a lot of form controls in template and compile with AOT,
 webpack build will hang for a long time or seemingly never complete.
 
